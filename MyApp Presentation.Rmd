@@ -1,0 +1,57 @@
+---
+title: "MyApp Presentation"
+author: "Svetoslava"
+date: "1 January 2017"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Introduction
+
+For week 4 assignment in Data Products course, I had to create a Shiny App and accompanied presentation explaining how I developed it and what it does.
+
+The Shiny application in question was entirely up to me. 
+
+Here's what you need to know:
+
+1. I used the already available dataset "diamonds" in R studio
+2. Created a very simple Shiny App that allows you to compare prices of diamonds vs Carat, Cut and Clarity.
+3. It also has an optional button that allows you to select or deselect whether you want to see the outliers. 
+4. The Output is presented by a simple boxplot.
+
+## How the App works
+
+Link to the App on ShinyApps - https://svetla.shinyapps.io/MyApp1/
+
+You can select via a dropdown menu whether you want to compare Carats or Cut or Clarity to the price of diamonds. After you make your choice the boxplot trends will be displayed and you can optionally choose whether or not you want to additionally show the outliers.
+
+
+## Example from the Server.R Code
+
+library(shiny)
+library(datasets)
+data <- read.csv("./Data/diamonds.csv")
+
+shinyServer(function(input, output) {
+ 
+  formulaText <- reactive({
+    paste("price ~", input$variable)
+  })
+  
+  output$caption <- renderText({
+    formulaText()
+  })
+  
+  output$diamondPlot <- renderPlot({
+    boxplot(as.formula(formulaText()), 
+            data,
+            outline = input$outliers)
+  })
+})
+
+## Extract from the Boxplot Output
+
+![](/Users/Svetla/Desktop/Data Science/shinyapp/MyApp1/Image1.png)

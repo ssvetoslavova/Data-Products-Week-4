@@ -1,0 +1,11 @@
+name: MyApp1
+title: MyApp1
+account: svetla
+server: shinyapps.io
+appId: 148873
+bundleId: 667667
+url: https://svetla.shinyapps.io/MyApp1/
+when: 1483448560.51991
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: Image1.PNG|MyApp Presentation.Rmd|MyApp_Presentation.html
